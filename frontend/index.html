@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam CGPA Prediction System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>📚 Exam CGPA Prediction System</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="pages/form.html">Predict CGPA</a></li>
+                <li><a href="pages/dashboard.html">Dashboard</a></li>
+                <li><a href="pages/about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Predict Your Semester CGPA</h1>
+            <p>Using Advanced Machine Learning & Linear Regression Analysis</p>
+            <div class="hero-buttons">
+                <button onclick="window.location.href='pages/form.html'" class="btn btn-primary">Get Started</button>
+                <button onclick="window.location.href='pages/dashboard.html'" class="btn btn-secondary">View Dashboard</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Accurate Predictions</h3>
+                    <p>Using advanced Linear Regression model trained on real student data</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🖼️</div>
+                    <h3>OCR Processing</h3>
+                    <p>Automatically extract CGPA/marks from previous semester result images</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Performance Analysis</h3>
+                    <p>Get detailed metrics including MSE, RMSE, and R² Score</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Data Storage</h3>
+                    <p>All predictions are saved for future reference and analysis</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Responsive Design</h3>
+                    <p>Access from any device - desktop, tablet, or mobile</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Smart Analysis</h3>
+                    <p>Comprehensive comparison of actual vs predicted CGPA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Enter Your Details</h3>
+                    <p>Provide your attendance percentage, internal CGPA, and daily study hours</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Upload Previous Results</h3>
+                    <p>Upload an image of your previous semester results for OCR processing</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Prediction</h3>
+                    <p>Our AI model predicts your next semester CGPA in seconds</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>View Analytics</h3>
+                    <p>Check detailed performance metrics and comparison graphs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics">
+        <div class="container">
+            <h2>System Statistics</h2>
+            <div id="stats-container" class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-students">0</div>
+                    <div class="stat-label">Total Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-predictions">0</div>
+                    <div class="stat-label">Total Predictions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avg-marks">0</div>
+                    <div class="stat-label">Average Predicted CGPA</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avg-attendance">0</div>
+                    <div class="stat-label">Average Attendance %</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Exam CGPA Prediction System. All rights reserved.</p>
+            <p>Built with Flask, Machine Learning & JavaScript</p>
+        </div>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script>
+        // Load statistics on home page
+        document.addEventListener('DOMContentLoaded', loadStatistics);
+
+        function loadStatistics() {
+            fetch('/api/statistics')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('total-students').textContent = data.total_students;
+                    document.getElementById('total-predictions').textContent = data.total_predictions;
+                    document.getElementById('avg-marks').textContent = data.average_predicted_marks.toFixed(2);
+                    document.getElementById('avg-attendance').textContent = data.average_attendance.toFixed(2);
+                })
+                .catch(error => console.error('Error loading statistics:', error));
+        }
+    </script>
+</body>
+</html>

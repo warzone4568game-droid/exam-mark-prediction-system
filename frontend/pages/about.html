@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Exam Mark Prediction System</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>📚 Exam Mark Prediction System</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="form.html">Predict Marks</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container about-container">
+        <h1>About This System</h1>
+
+        <section class="about-section">
+            <h2>What is the Exam Mark Prediction System?</h2>
+            <p>
+                The Exam Mark Prediction System is an intelligent educational tool designed to help students predict their next semester marks based on their academic performance and study habits. Using advanced machine learning techniques, specifically Linear Regression, the system analyzes multiple factors to provide accurate predictions.
+            </p>
+        </section>
+
+        <section class="about-section">
+            <h2>How Does It Work?</h2>
+            <div class="about-content">
+                <h3>Data Collection</h3>
+                <p>The system collects four key parameters from each student:</p>
+                <ul>
+                    <li><strong>Attendance Percentage:</strong> Your class attendance rate</li>
+                    <li><strong>Internal Assessment Marks:</strong> Continuous evaluation scores</li>
+                    <li><strong>Daily Study Hours:</strong> Average study time per day</li>
+                    <li><strong>Previous Semester Marks:</strong> Your last semester performance</li>
+                </ul>
+
+                <h3>Machine Learning Model</h3>
+                <p>
+                    The system employs a Linear Regression model trained on real student data. The model learns the relationships between input features and exam performance, enabling accurate predictions for new students.
+                </p>
+
+                <h3>Prediction Process</h3>
+                <p>
+                    When you submit your data, the system:
+                </p>
+                <ol>
+                    <li>Preprocesses your input data (normalization and scaling)</li>
+                    <li>Applies the trained Linear Regression model</li>
+                    <li>Generates a predicted mark for your next semester</li>
+                    <li>Provides performance metrics (R² Score, RMSE, MSE)</li>
+                    <li>Stores your data for future analysis</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>Key Technologies</h2>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h4>Frontend</h4>
+                    <p>HTML5, CSS3, JavaScript (Responsive Design)</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Backend</h4>
+                    <p>Python Flask Framework</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Machine Learning</h4>
+                    <p>Scikit-learn Linear Regression</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Database</h4>
+                    <p>SQLite</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Image Processing</h4>
+                    <p>Tesseract OCR, OpenCV</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Visualization</h4>
+                    <p>Chart.js, Matplotlib</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>Features</h2>
+            <ul class="features-list">
+                <li>✓ Accurate mark prediction using Linear Regression</li>
+                <li>✓ OCR-based image processing for automatic result extraction</li>
+                <li>✓ Comprehensive performance metrics and analysis</li>
+                <li>✓ Beautiful, responsive user interface</li>
+                <li>✓ Student record storage and tracking</li>
+                <li>✓ Interactive dashboard with visualizations</li>
+                <li>✓ Model retraining with new data</li>
+                <li>✓ Detailed comparison graphs</li>
+            </ul>
+        </section>
+
+        <section class="about-section">
+            <h2>Model Metrics Explanation</h2>
+            <div class="metrics-explanation">
+                <div class="metric">
+                    <h4>R² Score (Coefficient of Determination)</h4>
+                    <p>
+                        Indicates how well the model explains the variance in predicted marks. Values range from 0 to 1, where 1 means perfect prediction and 0 means the model explains none of the variability.
+                    </p>
+                </div>
+                <div class="metric">
+                    <h4>RMSE (Root Mean Square Error)</h4>
+                    <p>
+                        The square root of the average squared differences between predicted and actual values. Lower values indicate better predictions. Measured in the same units as the target variable.
+                    </p>
+                </div>
+                <div class="metric">
+                    <h4>MSE (Mean Square Error)</h4>
+                    <p>
+                        The average of squared differences between predicted and actual values. More sensitive to large errors than RMSE.
+                    </p>
+                </div>
+                <div class="metric">
+                    <h4>MAE (Mean Absolute Error)</h4>
+                    <p>
+                        The average of absolute differences between predicted and actual values. More robust to outliers than MSE and RMSE.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>Data Privacy</h2>
+            <p>
+                All student data is stored securely in a local database. The system does not share personal information with third parties. Your data is used only for prediction and analysis purposes within this system.
+            </p>
+        </section>
+
+        <section class="about-section">
+            <h2>Limitations & Disclaimer</h2>
+            <p>
+                This system provides predictions based on historical data patterns. Predictions may vary based on:
+            </p>
+            <ul>
+                <li>Changes in curriculum or exam patterns</li>
+                <li>Individual student performance variations</li>
+                <li>External factors affecting performance</li>
+                <li>Limited training dataset</li>
+            </ul>
+            <p>
+                These predictions are for guidance purposes and should not be considered as guaranteed outcomes. Always strive for continuous improvement in your studies.
+            </p>
+        </section>
+
+        <section class="about-section">
+            <div class="button-group" style="text-align: center; margin-top: 40px;">
+                <button onclick="window.location.href='form.html'" class="btn btn-primary">Start Predicting</button>
+                <button onclick="window.location.href='dashboard.html'" class="btn btn-secondary">View Dashboard</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Exam Mark Prediction System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/common.js"></script>
+</body>
+</html>

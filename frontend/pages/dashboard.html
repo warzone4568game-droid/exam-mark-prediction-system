@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Exam CGPA Prediction System</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>📚 Exam CGPA Prediction System</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="form.html">Predict CGPA</a></li>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container dashboard-container">
+        <h1>Dashboard</h1>
+
+        <!-- Statistics Cards -->
+        <section class="statistics">
+            <h2>System Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalStudents">0</div>
+                    <div class="stat-label">Total Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalPredictions">0</div>
+                    <div class="stat-label">Total Predictions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avgPredicted">0</div>
+                    <div class="stat-label">Avg Predicted CGPA</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avgPrevious">0</div>
+                    <div class="stat-label">Avg Previous CGPA</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avgAttendance">0</div>
+                    <div class="stat-label">Avg Attendance %</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avgStudyHours">0</div>
+                    <div class="stat-label">Avg Study Hours</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="charts-section">
+            <div class="chart-wrapper">
+                <h2>CGPA Comparison</h2>
+                <canvas id="comparisonChart"></canvas>
+            </div>
+
+            <div class="chart-wrapper">
+                <h2>Model Performance Metrics</h2>
+                <div id="metricsContainer" class="metrics-container">
+                    <div class="metric-item">
+                        <div class="metric-label">R² Score</div>
+                        <div class="metric-value" id="metricR2">0.00</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">RMSE</div>
+                        <div class="metric-value" id="metricRMSE">0.00</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">MSE</div>
+                        <div class="metric-value" id="metricMSE">0.00</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">MAE</div>
+                        <div class="metric-value" id="metricMAE">0.00</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Predictions -->
+        <section class="recent-predictions">
+            <h2>Recent Predictions</h2>
+            <div class="table-wrapper">
+                <table class="predictions-table">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Student ID</th>
+                            <th>Attendance %</th>
+                            <th>Internal CGPA</th>
+                            <th>Study Hours</th>
+                            <th>Previous CGPA</th>
+                            <th>Predicted CGPA</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="predictionsTableBody">
+                        <tr>
+                            <td colspan="8" style="text-align: center;">Loading predictions...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Feature Importance -->
+        <section class="feature-importance">
+            <h2>Feature Importance (Model Coefficients)</h2>
+            <div id="featureImportanceContainer" class="features-list"></div>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="dashboard-actions">
+            <button type="button" class="btn btn-primary" onclick="window.location.href='form.html'">Make New Prediction</button>
+            <button type="button" class="btn btn-secondary" onclick="exportData()">Export Data</button>
+            <button type="button" class="btn btn-success" onclick="retrainModel(this)">Retrain Model</button>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Exam CGPA Prediction System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

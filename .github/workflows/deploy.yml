@@ -1,0 +1,58 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y tesseract-ocr
+    
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Verify Flask app structure
+      run: |
+        python -c "from backend.app import app; print('Flask app loaded successfully')"
+        python -c "from ml_model.model import MarksPredictor; print('ML model loaded successfully')"
+        python -c "from database.db_handler import DatabaseHandler; print('Database handler loaded successfully')"
+    
+    - name: Test database initialization
+      run: |
+        python -c "
+from database.db_handler import DatabaseHandler
+db = DatabaseHandler('test_exam.db')
+db.init_db()
+print('Database initialized successfully')
+"
+    
+    - name: Cleanup
+      run: rm -f test_exam.db
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Deploy notification
+      run: echo "Deployment steps can be added here for Heroku, Railway, AWS, etc."

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Form - Exam CGPA Prediction System</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>📚 Exam Mark Prediction System</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="form.html" class="active">Predict CGPA</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container form-container">
+        <div class="form-wrapper">
+            <h1>Student Prediction Form</h1>
+            <p class="form-subtitle">Enter your details to predict your next semester CGPA</p>
+
+            <form id="predictionForm" class="prediction-form">
+                <!-- Student Information -->
+                <div class="form-section">
+                    <h2>Student Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="studentName">Student Name *</label>
+                        <input type="text" id="studentName" name="studentName" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentId">Student ID *</label>
+                        <input type="text" id="studentId" name="studentId" required placeholder="Enter your student ID">
+                    </div>
+                </div>
+
+                <!-- Academic Information -->
+                <div class="form-section">
+                    <h2>Academic Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="attendance">Attendance Percentage *</label>
+                        <input type="number" id="attendance" name="attendance" required 
+                               min="0" max="100" step="0.5" placeholder="Enter attendance (0-100)">
+                        <small>Enter your current semester attendance percentage (Min 75% for marks)</small>
+                    </div>
+
+                    <!-- Internal Marks Breakdown -->
+                    <div class="form-group">
+                        <label style="font-weight: bold; display: block; margin-bottom: 10px;">Internal Marks Breakdown (Max: 30)</label>
+                        <div class="internal-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e1e4e8;">
+                            <div class="internal-col">
+                                <label for="int1" style="font-size: 0.9em; color: #555;">1st Internal (100) *</label>
+                                <input type="number" id="int1" min="0" max="100" step="1" required placeholder="0-100" style="padding: 8px; border-radius: 4px; border: 1px solid #ddd; width: 100%;">
+                                <div style="font-size: 0.8em; color: #2c3e50; margin-top: 4px;">Converted: <span id="int1_conv" style="font-weight:bold;">0</span> / 5</div>
+                            </div>
+                            <div class="internal-col">
+                                <label for="int2" style="font-size: 0.9em; color: #555;">2nd Internal (100) *</label>
+                                <input type="number" id="int2" min="0" max="100" step="1" required placeholder="0-100" style="padding: 8px; border-radius: 4px; border: 1px solid #ddd; width: 100%;">
+                                <div style="font-size: 0.8em; color: #2c3e50; margin-top: 4px;">Converted: <span id="int2_conv" style="font-weight:bold;">0</span> / 10</div>
+                            </div>
+                            <div class="internal-col">
+                                <label for="int3" style="font-size: 0.9em; color: #555;">3rd Internal (100) *</label>
+                                <input type="number" id="int3" min="0" max="100" step="1" required placeholder="0-100" style="padding: 8px; border-radius: 4px; border: 1px solid #ddd; width: 100%;">
+                                <div style="font-size: 0.8em; color: #2c3e50; margin-top: 4px;">Converted: <span id="int3_conv" style="font-weight:bold;">0</span> / 10</div>
+                            </div>
+                            <div class="internal-col">
+                                <label style="font-size: 0.9em; color: #555;">Attendance Mark</label>
+                                <div id="att_mark_display" style="padding: 8px; background: #fff; border: 1px solid #ddd; border-radius: 4px; height: 38px; display: flex; align-items: center; font-weight: bold; color: #27ae60;">0</div>
+                                <div style="font-size: 0.8em; color: #2c3e50; margin-top: 4px;">Converted: <span id="att_mark_conv" style="font-weight:bold;">0</span> / 5</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px; padding: 10px; background: #e3f2fd; border-radius: 6px; text-align: center; font-weight: bold; color: #1976d2; border: 1px solid #bbdefb;">
+                            Total Internal Marks: <span id="totalInternalDisplay">0</span> / 30
+                        </div>
+                        <input type="hidden" id="internalMarks" name="internalMarks" value="0">
+                        <small style="display: block; margin-top: 5px; color: #666;">Calculation: (Int1/20) + (Int2/10) + (Int3/10) + Attendance Mark</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studyHours">Daily Study Hours *</label>
+                        <input type="number" id="studyHours" name="studyHours" required 
+                               min="0" max="24" step="0.5" placeholder="Enter study hours (0-24)">
+                        <small>Average hours spent studying per day</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="previousMarks">Previous Semester CGPA *</label>
+                        <input type="number" id="previousMarks" name="previousMarks" required 
+                               min="0" max="10" step="0.01" placeholder="Enter previous semester CGPA (0-10)">
+                        <small>Your cumulative grade point average from the previous semester</small>
+                    </div>
+                </div>
+
+                <!-- Image Upload Section -->
+                <div class="form-section">
+                    <h2>Previous Semester Result (Optional)</h2>
+                    <p>Upload an image of your previous semester result for OCR processing</p>
+                    
+                    <div class="image-upload-area" id="imageUploadArea">
+                        <input type="file" id="resultImage" name="resultImage" accept="image/*" style="display:none;">
+                        <div class="upload-icon">📸</div>
+                        <p>Click to upload or drag and drop</p>
+                        <small>PNG, JPG, GIF, BMP up to 16MB</small>
+                    </div>
+                    <div id="imagePreview" style="display:none; margin-top: 20px;">
+                        <img id="previewImg" src="" alt="Preview" style="max-width: 300px; max-height: 300px; border-radius: 8px;">
+                        <button type="button" class="btn btn-small btn-danger" onclick="clearImage()">Clear Image</button>
+                    </div>
+                    <div id="ocrResults" style="display:none; margin-top: 20px;">
+                        <h3>Extracted CGPA/Marks</h3>
+                        <div id="ocrContent"></div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-section">
+                    <button type="submit" class="btn btn-primary btn-large">Get Prediction</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" style="display:none; margin-top: 40px;">
+            <div class="results-wrapper">
+                <h1>Prediction Results</h1>
+                
+                <div class="results-grid">
+                    <div class="result-card primary">
+                        <div class="result-label">Predicted CGPA</div>
+                        <div class="result-value" id="predictedMarks">0</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="result-label">R² Score</div>
+                        <div class="result-value" id="r2Score">0</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="result-label">RMSE</div>
+                        <div class="result-value" id="rmseValue">0</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="result-label">MSE</div>
+                        <div class="result-value" id="mseValue">0</div>
+                    </div>
+                </div>
+
+                <!-- Improved CGPA Comparison Chart -->
+                <div class="comparison-section" style="margin-top: 40px; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); border-left: 5px solid var(--primary-color);">
+                    <h2 style="margin-bottom: 20px; font-size: 1.4rem; color: var(--dark-color);">📈 Performance Comparison</h2>
+                    <div class="chart-container" style="display: flex; flex-direction: column; gap: 20px;">
+                        <div class="chart-item">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-weight: 600; color: #555;">Current / Previous Baseline</span>
+                                <span id="prevValueLabel" style="font-weight: 700; color: var(--dark-color);">0.00</span>
+                            </div>
+                            <div style="background: #edf2f7; height: 12px; border-radius: 6px; overflow: hidden;">
+                                <div id="prevBarFill" style="width: 0%; height: 100%; background: var(--gray-color); transition: width 0.8s ease;"></div>
+                            </div>
+                        </div>
+                        <div class="chart-item">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-weight: 600; color: var(--primary-color);">AI Predicted CGPA</span>
+                                <span id="predValueLabel" style="font-weight: 700; color: var(--primary-color);">0.00</span>
+                            </div>
+                            <div style="background: #edf2f7; height: 12px; border-radius: 6px; overflow: hidden;">
+                                <div id="predBarFill" style="width: 0%; height: 100%; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); transition: width 0.8s ease;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personalized Success Roadmap -->
+                <div class="roadmap-section" style="margin-top: 30px; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-top: 5px solid var(--secondary-color);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                        <h2 style="margin: 0; color: var(--dark-color); font-size: 1.8rem;">🎯 Personalized Success Roadmap</h2>
+                        <div id="performanceBadge" class="badge">Performance: Neutral</div>
+                    </div>
+
+                    <div class="roadmap-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <!-- Insight Card -->
+                        <div class="roadmap-card insight" style="background: #f0f7ff; border-radius: 10px; padding: 20px; border-left: 5px solid #007bff;">
+                            <h3 style="margin-top: 0; font-size: 1.1rem; color: #0056b3;">💡 Why this prediction?</h3>
+                            <p id="keyInsight" style="font-size: 0.95rem; line-height: 1.5; color: #333; margin-bottom: 0;">Analyzing your patterns...</p>
+                        </div>
+
+                        <!-- Action Card -->
+                        <div class="roadmap-card action" style="background: #f6fff9; border-radius: 10px; padding: 20px; border-left: 5px solid #28a745;">
+                            <h3 style="margin-top: 0; font-size: 1.1rem; color: #1e7e34;">🚀 How to increase?</h3>
+                            <p id="criticalAction" style="font-size: 0.95rem; line-height: 1.5; color: #333; margin-bottom: 0;">Calculating next steps...</p>
+                        </div>
+                    </div>
+
+                    <!-- New: Focus Areas Section -->
+                    <div style="margin-top: 25px; padding: 20px; background: #fff; border: 1px solid #e1e4e8; border-radius: 10px;">
+                        <h3 style="margin-top: 0; font-size: 1.2rem; color: var(--dark-color); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+                            <span>🔍</span> Areas to Focus
+                        </h3>
+                        <div id="focusAreasContainer" style="display: flex; flex-direction: column; gap: 12px;">
+                            <!-- Dynamic Focus Area Items -->
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 25px; padding: 15px; background: #fff9e6; border-radius: 8px; border: 1px solid #ffeeba;">
+                        <h3 style="margin-top: 0; font-size: 1.1rem; color: #856404; display: flex; align-items: center; gap: 8px;">
+                            <span>✨</span> AI Prediction Analysis
+                        </h3>
+                        <p id="aiAnalysis" style="font-size: 0.95rem; line-height: 1.6; color: #533f03; margin-bottom: 0;">
+                            Based on our machine learning model, your cumulative score is influenced primarily by study discipline.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary" onclick="document.querySelector('form').scrollIntoView({behavior: 'smooth'})">Make Another Prediction</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='dashboard.html'">View Dashboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Exam Mark Prediction System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/form.js"></script>
+</body>
+</html>
